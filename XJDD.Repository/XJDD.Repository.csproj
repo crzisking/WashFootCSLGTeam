@@ -14,7 +14,7 @@
     <ItemGroup>
       <Folder Include="Entity\" />
       <Folder Include="IRepository\" />
-      <Folder Include="Repositpry\" />
+      <Folder Include="Repository\" />
     </ItemGroup>
 
     <ItemGroup>
