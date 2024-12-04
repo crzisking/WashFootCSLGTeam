@@ -20,8 +20,4 @@
       <ProjectReference Include="..\XJDD.Service\XJDD.Service.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controller\" />
-    </ItemGroup>
-
 </Project>
