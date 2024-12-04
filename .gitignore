@@ -3,3 +3,12 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+.DS_Store
+/.build
+build/
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
