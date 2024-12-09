@@ -4,11 +4,11 @@ namespace XJDD.Repository;
 
 public class Repository<T> : SimpleClient<T> where T : class, new()
 {
-    public ITenant itenant = null;
+    public ITenant Tenant;
 
     public Repository(ISqlSugarClient db)
     {
-        itenant = db.AsTenant();
+        Tenant = db.AsTenant();
         base.Context = db.AsTenant().GetConnectionScopeWithAttr<T>();
     }
 }

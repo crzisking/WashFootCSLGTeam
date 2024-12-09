@@ -5,16 +5,14 @@ namespace XJDD.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public abstract class ApiControllerBase : ControllerBase
+public abstract class ApiControllerBase(
+    IMapper mapper,
+    IConfiguration configuration,
+    IHttpContextAccessor contextAccessor
+    ) : ControllerBase
 {
-    public readonly IMapper _Mapper; //autoMapper
-    public readonly IConfiguration _Configuration;
-    public readonly IHttpContextAccessor _ContextAccessor;
-
-    protected ApiControllerBase(IServiceProvider serviceProvider)
-    {
-        _Configuration = serviceProvider.GetRequiredService<IConfiguration>();
-        _Mapper = serviceProvider.GetRequiredService<IMapper>();
-        _ContextAccessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
-    }
+    protected readonly IMapper _Mapper = mapper;
+    protected readonly IConfiguration _Configuration = configuration;
+    protected readonly IHttpContextAccessor _ContextAccessor = contextAccessor;
+    
 }
