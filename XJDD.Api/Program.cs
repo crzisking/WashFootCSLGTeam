@@ -32,7 +32,6 @@ public class Program
         
         
         //数据库
-        string? mysqlDB = builder.Configuration.GetSection("Mysql_ConnectionString:DefaultConnection").Value;
         string? posthreDb = builder.Configuration.GetSection("PostgreSql:DefaultConnection").Value;
         
         //注册
@@ -40,21 +39,6 @@ public class Program
         {
             SqlSugarScope Db = new SqlSugarScope(new List<ConnectionConfig>()
                 {
-                    new ConnectionConfig()
-                    {
-                        ConfigId = DataBaseEnum.dayierp,
-                        DbType = DbType.MySql,
-                        LanguageType = LanguageType.Chinese,
-                        ConnectionString = mysqlDB,
-                        IsAutoCloseConnection = true,
-                        MoreSettings = new ConnMoreSettings()
-                        {
-                            IsWithNoLockQuery = true,
-                            IsWithNoLockSubquery = true,
-                            DisableWithNoLockWithTran = true,
-                            DatabaseModel = DbType.MySql,
-                        }
-                    },
                     new ConnectionConfig()
                     {
                         ConfigId = DataBaseEnum.XJDD,
@@ -67,20 +51,21 @@ public class Program
                             IsWithNoLockSubquery = true,
                             DisableWithNoLockWithTran = true,
                             DatabaseModel = DbType.PostgreSQL,
+                            PgSqlIsAutoToLower = false // 防止自动将表名转为小写
                         }
                     }
                 },
                 Db =>
                 {
-                    Db.GetConnectionScope(DataBaseEnum.dayierp).Aop.OnLogExecuting = (sql, p) =>
-                    {
-                        Console.WriteLine(sql);
-                    };
                     Db.GetConnectionScope(DataBaseEnum.XJDD).Aop.OnLogExecuting = (sql, p) =>
                     {
                         Console.WriteLine(sql);
                     };
                 });
+            Db.Aop.OnLogExecuting = (sql, p) =>
+            {
+                Console.WriteLine(sql);
+            };
             return Db;
         });
 
