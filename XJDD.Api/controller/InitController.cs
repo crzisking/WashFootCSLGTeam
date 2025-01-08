@@ -16,6 +16,7 @@ public class InitController : ApiControllerBase
     [HttpGet("GetMenuList")]
     public async Task<JsonResult> GetMenuList()
     {
+        //
         var menuList = await _initInterface.GetMenuList();
         Json json=new Json(200,"success",menuList);
         return new JsonResult(json);
