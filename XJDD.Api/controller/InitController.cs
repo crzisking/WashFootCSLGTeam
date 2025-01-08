@@ -5,13 +5,10 @@ using XJDD.Service.Implementation;
 
 namespace XJDD.Api.controller;
 
-public class InitController : ApiControllerBase
+public class InitController(ServiceProvider serviceProvider) : ApiControllerBase
 {
-    private IInitInterface _initInterface;
-    public InitController(IServiceProvider serviceProvider)
-    {
-        _initInterface = serviceProvider.GetRequiredService<IInitInterface>();
-    }
+    private readonly IInitInterface _initInterface =serviceProvider.GetRequiredService<IInitInterface>();
+   
     
     [HttpGet("GetMenuList")]
     public async Task<JsonResult> GetMenuList()

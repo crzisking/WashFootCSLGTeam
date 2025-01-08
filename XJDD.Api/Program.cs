@@ -3,7 +3,6 @@ using ichia.Api.Middlewares;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Serilog;
-using Serilog.Core;
 using Serilog.Events;
 using SqlSugar;
 using XJDD.Repository;
@@ -11,13 +10,6 @@ using XJDD.Service;
 
 public class Program
 {
-    public Program(IConfiguration configuration)
-    {
-        Configuration = configuration;
-    }
-
-    public IConfiguration Configuration { get; }
-
     public static void Main(string[] args)
     {
 
